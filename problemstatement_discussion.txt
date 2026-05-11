@@ -1,1 +1,120 @@
 
+1. Problem Overview
+
+The goal of this project is to simulate a simplified Applicant Tracking System (ATS) used by companies to automatically rank candidates according to how well their skills match a job description (JD).
+
+The system takes:
+
+multiple resumes containing raw skill data
+multiple job descriptions
+
+and performs:
+
+skill normalization
+skill deduplication
+vocabulary construction
+TF-IDF vectorization
+JD binary vector creation
+cosine similarity computation
+ranking of top candidates
+
+The final output displays the Top 3 most relevant candidates for each job role.
+
+2. Real-World Motivation
+
+Modern companies receive thousands of resumes for a single role.
+
+Manual screening is:
+
+slow
+expensive
+inconsistent
+
+An ATS system automates:
+
+resume parsing
+skill extraction
+candidate ranking
+
+This project recreates the core ranking logic behind such systems using pure Python and mathematical similarity techniques.
+
+3. Core Concepts Used
+
+The project combines:
+
+Natural Language Processing (NLP)
+Information Retrieval
+Vector Mathematics
+
+Main concepts:
+
+normalization
+TF-IDF
+binary vector encoding
+cosine similarity
+ranking systems
+4. Dataset Description
+
+The system uses two datasets.
+
+A. Resume Dataset
+
+Stored in:
+
+RESUMES_RAW
+
+Each resume contains:
+
+unique ID
+candidate name
+raw skill string
+
+The resume data intentionally contains:
+
+spelling mistakes
+inconsistent formats
+aliases
+duplicates
+
+to simulate real-world noisy resume data.
+
+B. Job Description Dataset
+
+Stored in:
+
+JDS_RAW
+
+Each JD contains:
+
+company
+role
+required skills
+
+Example:
+
+{
+    "id": "JD1",
+    "company": "Kakao (Seoul)",
+    "role": "ML Engineer",
+    "raw": "Python, Machine Learning..."
+}
+5. Skill Alias Mapping
+
+One of the most important parts of the system is:
+
+SKILL_ALIASES
+
+This dictionary converts:
+
+spelling mistakes
+abbreviations
+alternate forms
+
+into a single canonical representation.
+
+Example
+Raw Skill	Canonical Skill
+Pyhton	python
+Reactjs	react
+kubernates	kubernetes
+power-bi	data_visualization
